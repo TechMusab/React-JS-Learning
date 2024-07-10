@@ -1,18 +1,41 @@
-h1{
-    font-weight: 700;
-    font-size: 45px;
-    margin: 15px;
+.inputcontainer {
+width: 600px;
+height: 50px;
+display: flex;
+gap: 30px;
 }
-input{
-    width: 83%;
+.inputcontainer input{
+    height: 30px;
+    width: 300px;
+
 }
-.itemcontainer{
- text-align: left;
- margin-top: 10px;
+.inputcontainer .add{
+    height: 30px;
+    width: 70px;
+    background-color: rgb(6, 139, 30);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
-.container{
-    margin-left: 47px;
+.item{
+    width: 600px;
+    height: 50px;
+    display: flex;
+    gap: 30px;
+    text-align: start;
 }
-.btn{
-    min-width:80px;
+.item p{
+    height: 30px;
+    width: 300px;
+    font-size: 25px;
+}
+.item button{
+    height: 30px;
+    width: 70px;
+    background-color: rgb(121, 23, 23);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }

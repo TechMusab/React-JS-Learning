@@ -1,16 +1,10 @@
-function Todoitem(){
-    return   <div class="container"> 
-     <div class="row myrow">
-    <div class="col-6">
-      Go to College
+function Todoitem() {
+  return (
+    <div className="item">
+      <p>Buy Milk</p>
+      <p>2/3/2023</p>
+      <button>Delete</button>
     </div>
-    <div class="col-4">
-    4/10/2023
-    </div>
-    <div class="col-2">
-    <button type="button" class="btn btn-danger">Delete</button>
-    </div>
-  </div>
-  </div>
+  );
 }
-export default Todoitem
+export default Todoitem;
