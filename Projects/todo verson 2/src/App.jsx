@@ -2,28 +2,39 @@ import "./App.css";
 import AppName from "./components/AppName";
 import Addtodo from "./components/Addtodo";
 import Todocontainer from "./components/todoitemcontainer";
+import { useState } from "react";
 
 //understand break the app into components
 function App() {
-  const todoitems = [
-    {
-      name: "Buy Milk",
-      dueDate: "2/3/2024",
-    },
-    {
-      name: "Go to College",
-      dueDate: "2/3/2024",
-    },
-    {
-      name: "Buy Order",
-      dueDate: "2/3/2024",
-    },
-  ];
+  let [text, settext] = useState("");
+  let [date, setdate] = useState("");
+  let [todoitem, settodoitem] = useState([]);
+  const onchangetext = (event) => {
+    settext(event.target.value);
+  };
+  const onchangedate = (event) => {
+    console.log(event.target.value);
+    setdate(event.target.value);
+  };
+  const addtodoitem=(event)=>{
+    console.log(typeof date);
+    let newtodoitem={name:text, date:date};
+    let newarray=[...todoitem,newtodoitem];
+    settodoitem(newarray);
+  }
+  const deletetodo=(index)=>{
+    let newarray = todoitem.filter((_, idx) => idx !== index);
+    settodoitem(newarray);
+  }
   return (
     <center>
-        <AppName></AppName>
-        <Addtodo></Addtodo>
-        <Todocontainer todoitems= {todoitems}></Todocontainer>
+      <AppName></AppName>
+      <Addtodo
+        onchangetext={onchangetext}
+        onchangedate={onchangedate}
+        add={addtodoitem}
+      ></Addtodo>
+      <Todocontainer deletetodo={deletetodo} todoitem={todoitem}></Todocontainer>
     </center>
   );
 }
