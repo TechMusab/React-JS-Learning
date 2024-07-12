@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'; 
 import styles from './item.module.css';
-const Item=({FoodItem,handleclick})=>{
+const Item=({FoodItem,handleclick,className})=>{
 return (
-    <li onClick={handleclick} className={`${styles["my-item"]} list-group-item`}>{FoodItem}</li>
+    <li onClick={handleclick} className={`${styles["my-item"]} list-group-item ${className}`}>{FoodItem}</li>
 );
 }
 Item.propTypes = {

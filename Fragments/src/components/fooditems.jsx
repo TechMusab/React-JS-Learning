@@ -1,17 +1,29 @@
-import PropTypes from 'prop-types'; 
+import PropTypes from "prop-types";
 import Item from "./item";
-const Fooditems=({items})=>{
-return(
+import { useState } from "react";
+const Fooditems = ({ items }) => {
+  let [color, setcolor] = useState(null);
+  let [clickedindex, setclickedindex] = useState(0);
+  return (
     <ul className="list-group">
-    {items.map((item)=>(
-        <Item handleclick={(event)=>{console.log("clicked");console.log(event)}} key={item} FoodItem={item}></Item>
-    ))} 
+      {items.map((item, index) => (
+        <Item
+          className={clickedindex == index ? color : " "}
+          handleclick={(event) => {
+            console.log(event);
+            setclickedindex(index);
+            setcolor("active");
+          }}
+          key={item}
+          FoodItem={item}
+        ></Item>
+      ))}
     </ul>
-);
-}
+  );
+};
 Fooditems.propTypes = {
-    items: PropTypes.array.isRequired, 
-  };
+  items: PropTypes.array.isRequired,
+};
 export default Fooditems;
 //can pass ftns via props
 //pass dynmic behviour b/w components
