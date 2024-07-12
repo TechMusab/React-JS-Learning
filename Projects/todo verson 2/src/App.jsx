@@ -13,17 +13,15 @@ function App() {
     settext(event.target.value);
   };
   const onchangedate = (event) => {
-    console.log(event.target.value);
     setdate(event.target.value);
   };
   const addtodoitem=(event)=>{
-    console.log(typeof date);
     let newtodoitem={name:text, date:date};
     let newarray=[...todoitem,newtodoitem];
     settodoitem(newarray);
   }
   const deletetodo=(index)=>{
-    let newarray = todoitem.filter((_, idx) => idx !== index);
+    let newarray = todoitem.filter((_,idx) => idx !== index);
     settodoitem(newarray);
   }
   return (
