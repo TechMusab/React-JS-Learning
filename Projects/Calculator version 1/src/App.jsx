@@ -1,6 +1,8 @@
+import { useState } from "react";
 import "./App.css";
 import Display from "./components/display";
 import Mainbuttons from "./components/mainbuttons";
+import { evaluate } from "mathjs";
 function App() {
   let array = [
     "C",
@@ -21,10 +23,31 @@ function App() {
     "0",
     ".",
   ];
+  let [display, setdisplay] = useState("");
+  const handleclick = (e) => {
+    if (e.target.innerText === "C") {
+      setdisplay("");
+    } else if (e.target.innerText !== "=") {
+      const num = e.target.innerText;
+      setdisplay((prevDisplay) => prevDisplay + num);
+    } else {
+      try {
+        console.log("Invalid");
+        let result = evaluate(display);
+        console.log(result);
+        setdisplay(result);
+        setTimeout(() => {
+          setdisplay("");
+        }, 3000);
+      } catch (error) {
+        alert("Please enter the valid input");
+      }
+    }
+  };
   return (
     <div className="calcontainer">
-      <Display></Display>
-      <Mainbuttons array={array}></Mainbuttons>
+      <Display input={display}></Display>
+      <Mainbuttons handleclick={handleclick} array={array}></Mainbuttons>
     </div>
   );
 }
