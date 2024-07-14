@@ -1,0 +1,19 @@
+.inputcontainer {
+    width: 400px;
+    height: 50px;
+    display: flex;
+    gap: 30px;
+  }
+  .inputcontainer input {
+    height: 30px;
+    width: 150px;
+  }
+  .inputcontainer .add {
+    height: 30px;
+    width: 70px;
+    background-color: rgb(6, 139, 30);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
