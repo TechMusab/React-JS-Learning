@@ -14,10 +14,13 @@ const Createpost = () => {
     const newpost = {
       id:Date.now(),
       userId: userid.current.value,
-      postTitle: title.current.value,
+      title: title.current.value,
       body: body.current.value,
-      reactions: reactions.current.value,
-      hashtags: tags.current.value.split(" "),
+      reactions:{
+        likes:reactions.current.value,
+        dislikes:reactions.current.value
+      },
+      tags: tags.current.value.split(" "),
     };
     addpost(newpost);
     userid.current.value="";
