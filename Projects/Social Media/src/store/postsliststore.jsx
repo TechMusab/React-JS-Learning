@@ -36,11 +36,9 @@ const Postlistprovider = (props) => {
     });
   };
   const getallposts=(posts)=>{
-    console.log("clicked");
-    console.log(posts.posts);
     dispatchmypostlist({
       type: "ALL_POST",
-      payload: posts.posts,
+      payload: posts,
     });
   }
   return (
