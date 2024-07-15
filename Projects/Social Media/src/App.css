@@ -1,0 +1,17 @@
+.mycontainer {
+  width: 100%;
+}
+.sidebar {
+  min-height: 800px;
+}
+.formcontainer {
+  display: flex;
+  gap: 5rem;
+  width: 100%;
+}
+.postcontainer {
+  width: 90%;
+}
+.createpost{
+  width: 80%;
+}
