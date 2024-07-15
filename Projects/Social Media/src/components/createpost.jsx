@@ -1,21 +1,99 @@
-const Createpost=()=>{
-    return (
-        <form className="createpost">
-  <div className="mb-3 ">
-    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-    <div id="emailHelp" className="form-text">We will never share your email with anyone else.</div>
-  </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1"/>
-  </div>
-  <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
-</form>
-    );
-}
+import { useRef } from "react";
+import { Postlist as Mypostlist } from "../store/postsliststore";
+import { useContext } from "react";
+
+const Createpost = () => {
+  const {addpost} = useContext(Mypostlist);
+  const userid = useRef();
+  const title = useRef();
+  const body = useRef();
+  const reactions = useRef();
+  const tags = useRef();
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    const newpost = {
+      id:Date.now(),
+      userId: userid.current.value,
+      postTitle: title.current.value,
+      body: body.current.value,
+      reactions: reactions.current.value,
+      hashtags: tags.current.value.split(" "),
+    };
+    addpost(newpost);
+    userid.current.value="";
+    title.current.value="";
+    body.current.value="";
+    reactions.current.value="";
+    tags.current.value="";
+  };
+  return (
+    <form className="createpost" onSubmit={handlesubmit}>
+      <div className="mb-3 ">
+        <label htmlFor="userid" className="form-label">
+          User id
+        </label>
+        <input
+          ref={userid}
+          type="text"
+          className="form-control"
+          id="userid"
+          placeholder="Enter your user id"
+        />
+      </div>
+      <div className="mb-3 ">
+        <label htmlFor="title" className="form-label">
+          Post Title
+        </label>
+        <input
+          ref={title}
+          type="text"
+          className="form-control"
+          id="title"
+          placeholder="Whats on your mind?"
+        />
+      </div>
+      <div className="mb-3 ">
+        <label htmlFor="reactions" className="form-label">
+          Reactions
+        </label>
+        <input
+          ref={reactions}
+          type="text"
+          className="form-control"
+          id="reactions"
+          placeholder="Enter reactions"
+        />
+      </div>
+      <div className="mb-3 ">
+        <label htmlFor="tags" className="form-label">
+          Tags
+        </label>
+        <input
+          ref={tags}
+          type="text"
+          className="form-control"
+          id="tags"
+          placeholder="Enter tags"
+        />
+      </div>
+      <div className="mb-3 ">
+        <label htmlFor="body" className="form-label">
+          Post Content
+        </label>
+        <textarea
+          ref={body}
+          type="text"
+          className="form-control"
+          id="body"
+          placeholder="Share your thoughts here"
+          rows="10"
+        />
+      </div>
+
+      <button type="submit" className="btn btn-primary">
+        Post
+      </button>
+    </form>
+  );
+};
 export default Createpost;

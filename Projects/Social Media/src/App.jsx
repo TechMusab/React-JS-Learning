@@ -22,7 +22,7 @@ function App() {
         <div className="formcontainer">
           <Sidebar selectedtab={tab} handlehometab={handlehometab} handleposttab={handleposttab}> </Sidebar>
           <div className="postcontainer">
-          {tab==="home" ?  <Postlist></Postlist> : <Createpost></Createpost>}
+          {tab==="home" ?  <Createpost></Createpost> : <Postlist></Postlist> }
           </div>
         </div>
         <Footer></Footer>

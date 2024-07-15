@@ -13,5 +13,14 @@
   width: 90%;
 }
 .createpost{
-  width: 80%;
+  margin-top: 20px;
+  width: 50%;
 }
+.btn-primary{
+  margin: 6px 6px;
+}
+.card{
+  width: 30rem;
+}
+
+  
