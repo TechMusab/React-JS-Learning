@@ -3,7 +3,7 @@ import { Postlist as Mypostlist } from "../store/postsliststore";
 import { useContext } from "react";
 
 const Createpost = () => {
-  const {addpost} = useContext(Mypostlist);
+  const { addpost } = useContext(Mypostlist);
   const userid = useRef();
   const title = useRef();
   const body = useRef();
@@ -11,23 +11,29 @@ const Createpost = () => {
   const tags = useRef();
   const handlesubmit = (e) => {
     e.preventDefault();
-    const newpost = {
-      id:Date.now(),
-      userId: userid.current.value,
-      title: title.current.value,
-      body: body.current.value,
-      reactions:{
-        likes:reactions.current.value,
-        dislikes:reactions.current.value
-      },
-      tags: tags.current.value.split(" "),
-    };
-    addpost(newpost);
-    userid.current.value="";
-    title.current.value="";
-    body.current.value="";
-    reactions.current.value="";
-    tags.current.value="";
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: userid.current.value,
+        title: title.current.value,
+        body: body.current.value,
+        reactions: {
+          likes: reactions.current.value,
+          dislikes: reactions.current.value,
+        },
+        tags: tags.current.value.split(" "),
+      }),
+    })
+      .then((res) => res.json())
+      .then((post) => {
+        addpost(post);
+      });
+    userid.current.value = "";
+    title.current.value = "";
+    body.current.value = "";
+    reactions.current.value = "";
+    tags.current.value = "";
   };
   return (
     <form className="createpost" onSubmit={handlesubmit}>
