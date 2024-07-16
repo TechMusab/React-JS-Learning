@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Postlist as Mypostlist } from "../store/postsliststore";
 import Loader from "./loader";
 const Welcome = () => {
-  const { getallposts,loader } = useContext(Mypostlist);
+  const {loader } = useContext(Mypostlist);
 
   return (
     <center>

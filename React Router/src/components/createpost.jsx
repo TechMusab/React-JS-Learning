@@ -1,48 +1,20 @@
-import { useRef } from "react";
-import { Postlist as Mypostlist } from "../store/postsliststore";
-import { useContext } from "react";
+import { redirect } from "react-router-dom";
+import { Form } from "react-router-dom";
 
 const Createpost = () => {
-  const { addpost } = useContext(Mypostlist);
-  const userid = useRef();
-  const title = useRef();
-  const body = useRef();
-  const reactions = useRef();
-  const tags = useRef();
-  const handlesubmit = (e) => {
-    e.preventDefault();
-    fetch("https://dummyjson.com/posts/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: userid.current.value,
-        title: title.current.value,
-        body: body.current.value,
-        reactions: {
-          likes: reactions.current.value,
-          dislikes: reactions.current.value,
-        },
-        tags: tags.current.value.split(" "),
-      }),
-    })
-      .then((res) => res.json())
-      .then((post) => {
-        addpost(post);
-      });
-    userid.current.value = "";
-    title.current.value = "";
-    body.current.value = "";
-    reactions.current.value = "";
-    tags.current.value = "";
-  };
+  //  const { addpost } = useContext(Mypostlist);
+  // const navigate=useNavigate();
+
+  // const handlesubmit = (e) => {
+  // }
   return (
-    <form className="createpost" onSubmit={handlesubmit}>
+    <Form method="POST" className="createpost">
       <div className="mb-3 ">
         <label htmlFor="userid" className="form-label">
           User id
         </label>
         <input
-          ref={userid}
+          name="userId"
           type="text"
           className="form-control"
           id="userid"
@@ -54,7 +26,7 @@ const Createpost = () => {
           Post Title
         </label>
         <input
-          ref={title}
+          name="title"
           type="text"
           className="form-control"
           id="title"
@@ -66,7 +38,7 @@ const Createpost = () => {
           Reactions
         </label>
         <input
-          ref={reactions}
+          name="reactions"
           type="text"
           className="form-control"
           id="reactions"
@@ -78,7 +50,7 @@ const Createpost = () => {
           Tags
         </label>
         <input
-          ref={tags}
+          name="tags"
           type="text"
           className="form-control"
           id="tags"
@@ -90,7 +62,7 @@ const Createpost = () => {
           Post Content
         </label>
         <textarea
-          ref={body}
+          name="body"
           type="text"
           className="form-control"
           id="body"
@@ -102,7 +74,25 @@ const Createpost = () => {
       <button type="submit" className="btn btn-primary">
         Post
       </button>
-    </form>
+    </Form>
   );
 };
+export async function Createpostaction(data) {
+  const formData = await data.request.formData();
+  const postData = Object.fromEntries(formData);
+  postData.tags = postData.tags.split(" ");
+  console.log(postData);
+  fetch("https://dummyjson.com/posts/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(postData),
+  })
+    .then((res) => res.json())
+    .then((post) => {
+      console.log(post);
+    });
+
+  return redirect("/createpost");
+}
 export default Createpost;
+//understanding of action of forms and react routers
