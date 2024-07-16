@@ -48,7 +48,7 @@ const Postlistprovider = (props) => {
     fetch("https://dummyjson.com/posts", { signal })
       .then((res) => res.json())
       .then((data) => {
-        getallposts([]);
+        getallposts(data.posts);
         setloader(false);
       });
     return () => {
