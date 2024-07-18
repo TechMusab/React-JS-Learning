@@ -1,4 +1,5 @@
 import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 const Intial = {
   count: 0,
   privacy: false,
