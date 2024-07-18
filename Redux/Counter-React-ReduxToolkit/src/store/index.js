@@ -84,3 +84,6 @@ When you use state.value++, you're directly mutating the state, which Immer hand
 //understnding you cannot d state.value+1 because we are not storing it just 
 //doing an opertion
 //access the slice by name that is useSelector(store=>store.nameofslice (its intial value))
+//in redux toolkit you dont need to worry about the the other slice its value passed by redux toolkit to all components in only redux we have to spread the object first and pass the vaalue when any object propert is updated
+//use different files for slices and then export
+//redux gives us freedom and sepration of business logic & UI
